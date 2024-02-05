@@ -2,7 +2,7 @@
 #define CLIENT_H
 
 #include <QMainWindow>
-
+class Message;
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class client;
@@ -16,6 +16,7 @@ class client : public QMainWindow
 public:
     client(QWidget *parent = nullptr);
     ~client();
+    void addMessage(Message* message);
 
 private:
     Ui::client *ui;
