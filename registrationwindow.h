@@ -17,7 +17,7 @@ public:
     ~registrationWindow();
 
 private slots:
-    void on_CheckIP_clicked();
+    void onCheckIPclicked();
 
 private:
     Ui::registrationWindow *ui;

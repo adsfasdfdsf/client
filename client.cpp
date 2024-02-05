@@ -28,9 +28,9 @@ void client::onGetMessage()
     }
 }
 
-void client::onRegistered()
+void client::onRegistered(const QHostAddress ip, qint16 port)
 {
-
+    socket.connectToHost(ip, port);
 }
 
 void client::onSendMessage()
