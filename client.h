@@ -1,5 +1,6 @@
 #ifndef CLIENT_H
 #define CLIENT_H
+#include <QTcpSocket>
 
 #include <QMainWindow>
 class Message;
@@ -17,8 +18,13 @@ public:
     client(QWidget *parent = nullptr);
     ~client();
     void addMessage(Message* message);
-
+public slots:
+    void onGetMessage();
+    void onRegistered();
+    void onSendMessage();
 private:
     Ui::client *ui;
+    QTcpSocket socket;
+    QString name;
 };
 #endif // CLIENT_H
