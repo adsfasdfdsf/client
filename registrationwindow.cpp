@@ -12,3 +12,11 @@ registrationWindow::~registrationWindow()
 {
     delete ui;
 }
+
+void registrationWindow::onCheckIPclicked()
+{
+    QString name = ui->setName->toPlainText();
+    QString ip = ui->ip->toPlainText();
+
+}
+

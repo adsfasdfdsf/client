@@ -1,6 +1,7 @@
 #ifndef REGISTRATIONWINDOW_H
 #define REGISTRATIONWINDOW_H
 
+
 #include <QWidget>
 
 namespace Ui {
@@ -14,6 +15,9 @@ class registrationWindow : public QWidget
 public:
     explicit registrationWindow(QWidget *parent = nullptr);
     ~registrationWindow();
+
+private slots:
+    void on_CheckIP_clicked();
 
 private:
     Ui::registrationWindow *ui;

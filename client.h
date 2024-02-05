@@ -20,7 +20,7 @@ public:
     void addMessage(Message* message);
 public slots:
     void onGetMessage();
-    void onRegistered();
+    void onRegistered(const QHostAddress ip, qint16 port);
     void onSendMessage();
 private:
     Ui::client *ui;
