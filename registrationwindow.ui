@@ -31,7 +31,10 @@
 }</string>
      </property>
      <property name="text">
-      <string>IP</string>
+      <string>IP:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </item>

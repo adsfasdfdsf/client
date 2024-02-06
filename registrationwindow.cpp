@@ -6,6 +6,7 @@ registrationWindow::registrationWindow(QWidget *parent)
     , ui(new Ui::registrationWindow)
 {
     ui->setupUi(this);
+    connect(ui->CheckIP, &QPushButton::clicked, this, &registrationWindow::onCheckIPclicked);
 }
 
 registrationWindow::~registrationWindow()
@@ -17,6 +18,8 @@ void registrationWindow::onCheckIPclicked()
 {
     QString name = ui->setName->toPlainText();
     QString ip = ui->ip->toPlainText();
+
+    this->close();
 
 }
 

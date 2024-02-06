@@ -27,4 +27,9 @@ private:
     QTcpSocket socket;
     QString name;
 };
+
+inline void client::onRegistered(const QHostAddress ip, qint16 port)
+{
+
+}
 #endif // CLIENT_H
