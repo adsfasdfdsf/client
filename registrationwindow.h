@@ -19,7 +19,7 @@ public:
 private slots:
     void onCheckIPclicked();
 
-private:
+public:
     Ui::registrationWindow *ui;
 };
 

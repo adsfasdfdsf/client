@@ -20,16 +20,11 @@ public:
     void addMessage(Message* message);
 public slots:
     void onGetMessage();
-    void onRegistered(const QHostAddress ip, qint16 port);
+    void onRegistered();
     void onSendMessage();
 private:
     Ui::client *ui;
     QTcpSocket socket;
     QString name;
 };
-
-inline void client::onRegistered(const QHostAddress ip, qint16 port)
-{
-
-}
 #endif // CLIENT_H

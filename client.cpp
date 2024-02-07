@@ -1,6 +1,7 @@
 #include "client.h"
 #include "./ui_client.h"
 #include "message.h"
+#include "registrationwindow.cpp"
 
 client::client(QWidget *parent)
     : QMainWindow(parent)
@@ -28,9 +29,9 @@ void client::onGetMessage()
     }
 }
 
-void client::onRegistered(const QHostAddress ip, qint16 port)
+void client::onRegistered()
 {
-    socket.connectToHost(ip, port);
+    socket.connectToHost(ui->, port);
 }
 
 void client::onSendMessage()
