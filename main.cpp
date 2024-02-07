@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
     w.addMessage(new Message("Иван", "Пока"));
     registrationWindow win;
     QObject::connect(win.ui->CheckIP, &QPushButton::clicked, &w, &client::onRegistered);
-    w.rwui = win.ui;
+    w.rw_ptr = &win;
     win.show();
     w.show();
     return a.exec();

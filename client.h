@@ -1,7 +1,7 @@
 #ifndef CLIENT_H
 #define CLIENT_H
 #include <QTcpSocket>
-#include "ui_registrationwindow.h"
+#include "registrationwindow.h"
 
 #include <QMainWindow>
 class Message;
@@ -15,7 +15,7 @@ class client : public QMainWindow
 {
     Q_OBJECT
 public:
-    Ui::registrationWindow *rwui;
+    registrationWindow* rw_ptr;
 public:
     client(QWidget *parent = nullptr);
     ~client();

@@ -31,9 +31,9 @@ void client::onGetMessage()
 
 void client::onRegistered()
 {
-    quint16 port = rwui->port->toPlainText().toUInt();
-    socket.connectToHost(rwui->ip->toPlainText(), port);
-    name = rwui->setName->toPlainText();
+    quint16 port = rw_ptr->ui->port->toPlainText().toUInt();
+    socket.connectToHost(rw_ptr->ui->ip->toPlainText(), port);
+    name = rw_ptr->ui->setName->toPlainText();
 }
 
 void client::onSendMessage()

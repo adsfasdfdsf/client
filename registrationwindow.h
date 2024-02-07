@@ -16,9 +16,6 @@ public:
     explicit registrationWindow(QWidget *parent = nullptr);
     ~registrationWindow();
 
-private slots:
-    void onCheckIPclicked();
-
 public:
     Ui::registrationWindow *ui;
 };
