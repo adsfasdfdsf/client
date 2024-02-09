@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>385</width>
-    <height>136</height>
+    <width>320</width>
+    <height>57</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,23 +15,11 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QWidget{
-	border-color: black;
-	background-color: #6c7070; 
+	background-color: #5c6061; 
 }
-Line{
-	padding: none;
-	margin: none;
-	width: 100%
-}</string>
+</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="Line" name="line_2">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
-   </item>
    <item>
     <widget class="QLabel" name="name">
      <property name="sizePolicy">
@@ -40,16 +28,23 @@ Line{
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
      <property name="styleSheet">
       <string notr="true">QLabel{
-	color: #b3bcc9;
+	color: #cdf28d;
+	font-weight: bold;
 }</string>
      </property>
      <property name="text">
       <string>TextLabel</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
    </item>
@@ -61,15 +56,13 @@ Line{
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+	color: white;
+}</string>
+     </property>
      <property name="text">
       <string>TextLabel</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="Line" name="line">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </item>
