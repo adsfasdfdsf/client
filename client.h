@@ -1,7 +1,6 @@
 #ifndef CLIENT_H
 #define CLIENT_H
 #include <QTcpSocket>
-#include "registrationwindow.h"
 
 #include <QMainWindow>
 class Message;
@@ -11,11 +10,13 @@ class client;
 }
 QT_END_NAMESPACE
 
+class RegistrationModal;
+
 class client : public QMainWindow
 {
     Q_OBJECT
 public:
-    registrationWindow* rw_ptr;
+    RegistrationModal* modal_ptr;
 public:
     client(QWidget *parent = nullptr);
     ~client();

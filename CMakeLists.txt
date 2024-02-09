@@ -24,7 +24,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         message.h message.cpp message.ui
-        registrationwindow.h registrationwindow.cpp registrationwindow.ui
+
+        registrationmodal.h registrationmodal.cpp registrationmodal.ui
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET client APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
