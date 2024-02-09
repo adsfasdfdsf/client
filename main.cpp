@@ -1,7 +1,7 @@
 #include "client.h"
 #include "message.h"
 #include "registrationwindow.h"
-#include "registrationwindow.cpp"
+#include "ui_registrationwindow.h"
 
 #include <QApplication>
 

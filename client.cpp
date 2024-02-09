@@ -1,7 +1,7 @@
 #include "client.h"
 #include "./ui_client.h"
 #include "message.h"
-#include "registrationwindow.cpp"
+#include "ui_registrationwindow.h"
 
 client::client(QWidget *parent)
     : QMainWindow(parent)

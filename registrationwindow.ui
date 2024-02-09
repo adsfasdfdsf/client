@@ -15,7 +15,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QWidget{
-	background: #4b5563;
+background: #4b5563;
 }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
