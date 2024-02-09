@@ -47,8 +47,11 @@ void client::onRegistered()
 
 void client::onSendMessage()
 {
+    if (ui->inputText->toPlainText() == ""){
+        return;
+    }
     socket.write(name.toLocal8Bit());
     socket.write("#");
     socket.write(ui->inputText->toPlainText().toLocal8Bit());
-
+    ui->inputText->clear();
 }
