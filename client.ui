@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>456</width>
-    <height>598</height>
+    <width>676</width>
+    <height>523</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,6 @@
    <string notr="true">QWidget{
 	background: #4b5563;
 	padding: none;
-	margin: none
-
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -32,42 +30,50 @@
     <item>
      <widget class="QScrollArea" name="scrollArea">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
       <property name="styleSheet">
        <string notr="true">QScrollArea{
-	margin: none;
-	padding: none;
 	background-color: #98a7b8;
 }
 QWidget{
 	background-color: #98a7b8;
-	margin: none;
-	padding: none;
 }</string>
       </property>
+      <property name="lineWidth">
+       <number>0</number>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustToContents</enum>
+      </property>
       <property name="widgetResizable">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
       <widget class="QWidget" name="chat">
        <property name="geometry">
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>263</width>
-         <height>16</height>
+         <width>386</width>
+         <height>265</height>
         </rect>
        </property>
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
+        <property name="spacing">
+         <number>6</number>
+        </property>
+        <property name="sizeConstraint">
+         <enum>QLayout::SetDefaultConstraint</enum>
+        </property>
         <property name="leftMargin">
          <number>0</number>
         </property>
@@ -127,17 +133,6 @@ QWidget{
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>456</width>
-     <height>178</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

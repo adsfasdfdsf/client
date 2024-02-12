@@ -23,6 +23,7 @@ client::~client()
 void client::addMessage(Message *message)
 {
     ui->chat->layout()->addWidget(message);
+    qDebug() << ui->chat->layout()->count();
 }
 
 void client::onGetMessage()
