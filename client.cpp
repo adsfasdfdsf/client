@@ -9,10 +9,13 @@ client::client(QWidget *parent)
     , ui(new Ui::client)
 {
     ui->setupUi(this);
-    modal_ptr = new RegistrationModal(this);
-    connect(modal_ptr, &QDialog::accepted, this, &client::onRegistered);
-    connect(ui->buttonSend, &QPushButton::clicked, this, &client::onSendMessage);
-    modal_ptr->exec();
+    // modal_ptr = new RegistrationModal(this);
+    // connect(modal_ptr, &QDialog::accepted, this, &client::onRegistered);
+    // connect(ui->buttonSend, &QPushButton::clicked, this, &client::onSendMessage);
+    // modal_ptr->exec();
+    connect(ui->buttonSend, &QPushButton::clicked, [this](){
+        addMessage(new Message("hello", "world"));
+    });
 }
 
 client::~client()

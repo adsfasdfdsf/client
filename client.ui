@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>676</width>
-    <height>523</height>
+    <width>808</width>
+    <height>614</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,7 +16,6 @@
   <property name="styleSheet">
    <string notr="true">QWidget{
 	background: #4b5563;
-	padding: none;
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -46,19 +45,25 @@ QWidget{
       <property name="lineWidth">
        <number>0</number>
       </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOn</enum>
+      </property>
       <property name="sizeAdjustPolicy">
-       <enum>QAbstractScrollArea::AdjustToContents</enum>
+       <enum>QAbstractScrollArea::AdjustIgnored</enum>
       </property>
       <property name="widgetResizable">
-       <bool>false</bool>
+       <bool>true</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
       <widget class="QWidget" name="chat">
        <property name="geometry">
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>386</width>
-         <height>265</height>
+         <width>774</width>
+         <height>516</height>
         </rect>
        </property>
        <property name="sizePolicy">
@@ -66,6 +71,12 @@ QWidget{
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QWidget {
+    border: 2 solid rgb(255, 0, 4);
+}
+</string>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <property name="spacing">
