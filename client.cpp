@@ -3,19 +3,17 @@
 #include "message.h"
 //#include "ui_registrationwindow.h"
 #include "registrationmodal.h"
+#include <QScrollBar>
 
 client::client(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::client)
 {
     ui->setupUi(this);
-    // modal_ptr = new RegistrationModal(this);
-    // connect(modal_ptr, &QDialog::accepted, this, &client::onRegistered);
-    // connect(ui->buttonSend, &QPushButton::clicked, this, &client::onSendMessage);
-    // modal_ptr->exec();
-    connect(ui->buttonSend, &QPushButton::clicked, [this](){
-        addMessage(new Message("hello", "world"));
-    });
+    modal_ptr = new RegistrationModal(this);
+    connect(modal_ptr, &QDialog::accepted, this, &client::onRegistered);
+    connect(ui->buttonSend, &QPushButton::clicked, this, &client::onSendMessage);
+    modal_ptr->exec();
 }
 
 client::~client()
@@ -26,6 +24,8 @@ client::~client()
 void client::addMessage(Message *message)
 {
     ui->chat->layout()->addWidget(message);
+ //   auto bar = ui->scrollArea->verticalScrollBar();
+ //   bar->setValue(bar->maximumHeight());  TODO : this thing
     qDebug() << ui->chat->layout()->count();
 }
 
