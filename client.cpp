@@ -4,6 +4,11 @@
 //#include "ui_registrationwindow.h"
 #include "registrationmodal.h"
 #include <QScrollBar>
+#include <QJsonObject>
+#include <QJsonDocument>
+#include <QJsonArray>
+#include <QJsonValue>
+#include <QJsonParseError>
 
 client::client(QWidget *parent)
     : QMainWindow(parent)
@@ -26,15 +31,17 @@ void client::addMessage(Message *message)
     ui->chat->layout()->addWidget(message);
  //   auto bar = ui->scrollArea->verticalScrollBar();
  //   bar->setValue(bar->maximumHeight());  TODO : this thing
-    qDebug() << ui->chat->layout()->count();
 }
 
 void client::onGetMessage()
 {
     while(socket.bytesAvailable() > 0){
-        QString msg = socket.readAll();
-        auto list = msg.split("#");
-        addMessage(new Message(list[0], list[1]));
+        auto msg = socket.readAll();
+        QJsonDocument doc = QJsonDocument::fromJson(msg);
+        QJsonObject json = doc.object();
+        addMessage(new Message(json["name"].toString(), json["message"].toString()));
+        auto bar = ui->scrollArea->verticalScrollBar();
+        bar->setValue(bar->maximumHeight());
     }
 }
 
@@ -49,13 +56,22 @@ void client::onRegistered()
     qDebug() << "connected";
 }
 
+
 void client::onSendMessage()
 {
     if (ui->inputText->toPlainText() == ""){
         return;
     }
-    socket.write(name.toLocal8Bit());
-    socket.write("#");
-    socket.write(ui->inputText->toPlainText().toLocal8Bit());
+    socket.write(toJson().toLatin1());
     ui->inputText->clear();
+}
+
+QString client::toJson() const
+{
+    QJsonObject message;
+    message.insert("name", name);
+    message.insert("message", ui->inputText->toPlainText());
+    QJsonDocument doc(message);
+    QString json = doc.toJson(QJsonDocument::Compact);
+    return json;
 }

@@ -29,5 +29,7 @@ private:
     Ui::client *ui;
     QTcpSocket socket;
     QString name;
+private:
+    QString toJson() const;
 };
 #endif // CLIENT_H
