@@ -58,6 +58,7 @@ void client::onRegistered()
     name = modal_ptr->getName();
     connect(&socket, &QTcpSocket::readyRead, this, &client::onGetMessage);
     qDebug() << "connected";
+    socket.write(name.toLatin1());
 }
 
 
