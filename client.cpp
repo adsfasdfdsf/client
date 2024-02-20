@@ -39,7 +39,11 @@ void client::onGetMessage()
         auto msg = socket.readAll();
         QJsonDocument doc = QJsonDocument::fromJson(msg);
         QJsonObject json = doc.object();
-        addMessage(new Message(json["name"].toString(), json["message"].toString()));
+        QJsonArray arr = json["messages"].toArray();
+        for(const auto& i: arr){
+            QJsonObject msg = i.toObject();
+            addMessage(new Message(msg["name"].toString(), msg["message"].toString()));
+        }
         auto bar = ui->scrollArea->verticalScrollBar();
         bar->setValue(bar->maximumHeight());
     }
@@ -68,9 +72,13 @@ void client::onSendMessage()
 
 QString client::toJson() const
 {
+    QJsonArray arr;
+    QJsonObject arrobj;
+    arrobj.insert("name", name);
+    arrobj.insert("message", ui->inputText->toPlainText());
+    arr.push_back(arrobj);
     QJsonObject message;
-    message.insert("name", name);
-    message.insert("message", ui->inputText->toPlainText());
+    message.insert("messages", arr);
     QJsonDocument doc(message);
     QString json = doc.toJson(QJsonDocument::Compact);
     return json;
