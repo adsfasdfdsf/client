@@ -107,7 +107,7 @@ background: #4b5563;
       <string notr="true">QPushButton { background-color: #38414f; border: none; color: #bec7d4;}</string>
      </property>
      <property name="text">
-      <string>PushButton</string>
+      <string>SUBMIT</string>
      </property>
     </widget>
    </item>

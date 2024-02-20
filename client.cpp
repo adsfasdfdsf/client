@@ -1,7 +1,6 @@
 #include "client.h"
 #include "./ui_client.h"
 #include "message.h"
-//#include "ui_registrationwindow.h"
 #include "registrationmodal.h"
 #include <QScrollBar>
 #include <QJsonObject>
@@ -29,8 +28,6 @@ client::~client()
 void client::addMessage(Message *message)
 {
     ui->chat->layout()->addWidget(message);
- //   auto bar = ui->scrollArea->verticalScrollBar();
- //   bar->setValue(bar->maximumHeight());  TODO : this thing
 }
 
 void client::onGetMessage()
@@ -51,9 +48,6 @@ void client::onGetMessage()
 
 void client::onRegistered()
 {
-    //quint16 port = rw_ptr->ui->port->toPlainText().toUInt();
-    //socket.connectToHost(rw_ptr->ui->ip->toPlainText(), port);
-    //name = rw_ptr->ui->setName->toPlainText();
     socket.connectToHost(modal_ptr->getIp(), 1234);
     name = modal_ptr->getName();
     connect(&socket, &QTcpSocket::readyRead, this, &client::onGetMessage);
