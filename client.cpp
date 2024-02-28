@@ -8,6 +8,7 @@
 #include <QJsonArray>
 #include <QJsonValue>
 #include <QJsonParseError>
+#include "ipadress.h"
 
 client::client(QWidget *parent)
     : QMainWindow(parent)
@@ -15,7 +16,9 @@ client::client(QWidget *parent)
 {
     ui->setupUi(this);
     modal_ptr = new RegistrationModal(this);
-    connect(modal_ptr, &QDialog::accepted, this, &client::onRegistered);
+    ip_modal_ptr = new ipAdress(this);
+    connect(modal_ptr, &QDialog::accepted, this, [this](){ip_modal_ptr->exec();});
+    connect(ip_modal_ptr, &QDialog::accepted, this, &client::onRegistered);
     connect(ui->buttonSend, &QPushButton::clicked, this, &client::onSendMessage);
     modal_ptr->exec();
 }
@@ -32,7 +35,6 @@ void client::addMessage(Message *message)
 
 void client::onGetMessage()
 {
-    setlocale(LC_ALL, "Russian");
     while(socket.bytesAvailable() > 0){
         auto msg = socket.readAll();
         QJsonDocument doc = QJsonDocument::fromJson(msg);
@@ -49,8 +51,7 @@ void client::onGetMessage()
 
 void client::onRegistered()
 {
-    setlocale(LC_ALL, "Russian");
-    socket.connectToHost(modal_ptr->getIp(), 1234);
+    socket.connectToHost(ip_modal_ptr->getIp(), 1234);
     name = modal_ptr->getName();
     connect(&socket, &QTcpSocket::readyRead, this, &client::onGetMessage);
     qDebug() << "connected";
@@ -60,7 +61,6 @@ void client::onRegistered()
 
 void client::onSendMessage()
 {
-    setlocale(LC_ALL, "Russian");
     if (ui->inputText->toPlainText() == ""){
         return;
     }
@@ -68,9 +68,9 @@ void client::onSendMessage()
     ui->inputText->clear();
 }
 
+
 QString client::toJsonMsg() const
 {
-    setlocale(LC_ALL, "Russian");
     QJsonArray arr;
     QJsonObject arrobj;
     arrobj.insert("name", name);
@@ -86,7 +86,6 @@ QString client::toJsonMsg() const
 
 
 QString client::toJsonName() const{
-    setlocale(LC_ALL, "Russian");
     QJsonObject json;
     json.insert("mode", "setName");
     json.insert("name", name);

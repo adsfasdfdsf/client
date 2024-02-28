@@ -18,8 +18,3 @@ QString RegistrationModal::getName() const
 {
     return ui->nameInput->text();
 }
-
-QString RegistrationModal::getIp() const
-{
-    return ui->ipInput->text();
-}

@@ -12,11 +12,14 @@ QT_END_NAMESPACE
 
 class RegistrationModal;
 
+class ipAdress;
+
 class client : public QMainWindow
 {
     Q_OBJECT
 public:
     RegistrationModal* modal_ptr;
+    ipAdress* ip_modal_ptr;
 public:
     client(QWidget *parent = nullptr);
     ~client();

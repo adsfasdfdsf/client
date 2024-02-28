@@ -16,8 +16,6 @@ public:
     ~RegistrationModal();
 
     QString getName() const;
-
-    QString getIp() const;
 private:
     Ui::RegistrationModal *ui;
 };
