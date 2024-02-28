@@ -30,6 +30,7 @@ private:
     QTcpSocket socket;
     QString name;
 private:
-    QString toJson() const;
+    QString toJsonMsg() const;
+    QString toJsonName() const;
 };
 #endif // CLIENT_H

@@ -26,6 +26,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         message.h message.cpp message.ui
 
         registrationmodal.h registrationmodal.cpp registrationmodal.ui
+        ipadress.h ipadress.cpp ipadress.ui
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET client APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

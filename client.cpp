@@ -32,6 +32,7 @@ void client::addMessage(Message *message)
 
 void client::onGetMessage()
 {
+    setlocale(LC_ALL, "Russian");
     while(socket.bytesAvailable() > 0){
         auto msg = socket.readAll();
         QJsonDocument doc = QJsonDocument::fromJson(msg);
@@ -48,33 +49,50 @@ void client::onGetMessage()
 
 void client::onRegistered()
 {
+    setlocale(LC_ALL, "Russian");
     socket.connectToHost(modal_ptr->getIp(), 1234);
     name = modal_ptr->getName();
     connect(&socket, &QTcpSocket::readyRead, this, &client::onGetMessage);
     qDebug() << "connected";
-    socket.write(name.toLatin1());
+    socket.write(toJsonName().toUtf8());
 }
 
 
 void client::onSendMessage()
 {
+    setlocale(LC_ALL, "Russian");
     if (ui->inputText->toPlainText() == ""){
         return;
     }
-    socket.write(toJson().toLatin1());
+    socket.write(toJsonMsg().toLatin1());
     ui->inputText->clear();
 }
 
-QString client::toJson() const
+QString client::toJsonMsg() const
 {
+    setlocale(LC_ALL, "Russian");
     QJsonArray arr;
     QJsonObject arrobj;
     arrobj.insert("name", name);
     arrobj.insert("message", ui->inputText->toPlainText());
     arr.push_back(arrobj);
     QJsonObject message;
+    message.insert("mode", "message");
     message.insert("messages", arr);
     QJsonDocument doc(message);
     QString json = doc.toJson(QJsonDocument::Compact);
     return json;
 }
+
+
+QString client::toJsonName() const{
+    setlocale(LC_ALL, "Russian");
+    QJsonObject json;
+    json.insert("mode", "setName");
+    json.insert("name", name);
+    QJsonDocument doc(json);
+    QString str = doc.toJson(QJsonDocument::Compact);
+    return str;
+}
+
+
