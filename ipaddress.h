@@ -1,5 +1,5 @@
-#ifndef IPADRESS_H
-#define IPADRESS_H
+#ifndef IPADDRESS_H
+#define IPADDRESS_H
 
 #include <QDialog>
 
@@ -21,4 +21,4 @@ public:
     QString getIp() const;
 };
 
-#endif // IPADRESS_H
+#endif // IPADDRESS_H

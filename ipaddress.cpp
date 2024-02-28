@@ -1,5 +1,5 @@
-#include "ipadress.h"
-#include "ui_ipadress.h"
+#include "ipaddress.h"
+#include "ui_ipaddress.h"
 #include <QtSql>
 
 ipAdress::ipAdress(QWidget *parent)

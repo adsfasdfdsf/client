@@ -8,7 +8,7 @@
 #include <QJsonArray>
 #include <QJsonValue>
 #include <QJsonParseError>
-#include "ipadress.h"
+#include "ipaddress.h"
 
 client::client(QWidget *parent)
     : QMainWindow(parent)
