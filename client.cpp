@@ -31,6 +31,10 @@ client::~client()
 void client::addMessage(Message *message)
 {
     ui->chat->layout()->addWidget(message);
+    ui->chat->adjustSize();
+    qApp->processEvents();
+    auto bar = ui->scrollArea->verticalScrollBar();
+    bar->setValue(bar->maximum());
 }
 
 void client::onGetMessage()
@@ -44,8 +48,6 @@ void client::onGetMessage()
             QJsonObject msg = i.toObject();
             addMessage(new Message(msg["name"].toString(), msg["message"].toString()));
         }
-        auto bar = ui->scrollArea->verticalScrollBar();
-        bar->setValue(bar->maximumHeight());
     }
 }
 
@@ -64,7 +66,7 @@ void client::onSendMessage()
     if (ui->inputText->toPlainText() == ""){
         return;
     }
-    socket.write(toJsonMsg().toLatin1());
+    socket.write(toJsonMsg().toUtf8());
     ui->inputText->clear();
 }
 
