@@ -30,11 +30,16 @@ client::~client()
 
 void client::addMessage(Message *message)
 {
-    ui->chat->layout()->addWidget(message);
-    ui->chat->adjustSize();
-    qApp->processEvents();
     auto bar = ui->scrollArea->verticalScrollBar();
-    bar->setValue(bar->maximum());
+    if (bar->value() == bar->maximum()){
+        ui->chat->layout()->addWidget(message);
+        ui->chat->adjustSize();
+        qApp->processEvents();
+        bar->setValue(bar->maximum());
+    }else{
+        ui->chat->layout()->addWidget(message);
+    }
+
 }
 
 void client::onGetMessage()
@@ -75,7 +80,10 @@ QString client::toJsonMsg() const
 {
     QJsonArray arr;
     QJsonObject arrobj;
-    arrobj.insert("name", name);
+    if (!ui->anonymus->isChecked())
+        arrobj.insert("name", name);
+    else
+        arrobj.insert("name", "");
     arrobj.insert("message", ui->inputText->toPlainText());
     arr.push_back(arrobj);
     QJsonObject message;

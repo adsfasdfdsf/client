@@ -62,7 +62,10 @@ background: #4b5563;
 }</string>
      </property>
      <property name="text">
-      <string>Use new connection. Enter IP adress:</string>
+      <string>Использовать новое подключение. Введите IP сервера:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </item>
@@ -88,7 +91,7 @@ background: #4b5563;
       <string notr="true">QPushButton { background-color: #38414f; border: none; color: #bec7d4;}</string>
      </property>
      <property name="text">
-      <string>SUBMIT</string>
+      <string>ОК</string>
      </property>
     </widget>
    </item>
@@ -110,7 +113,10 @@ background: #4b5563;
 }</string>
      </property>
      <property name="text">
-      <string>Use last connection:</string>
+      <string>Использовать последнее подключение:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </item>
@@ -120,7 +126,7 @@ background: #4b5563;
       <string notr="true">QPushButton { background-color: #38414f; border: none; color: white;}</string>
      </property>
      <property name="text">
-      <string>Last Connection</string>
+      <string>Последнее подключение</string>
      </property>
     </widget>
    </item>
