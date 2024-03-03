@@ -14,6 +14,8 @@ class RegistrationModal;
 
 class ipAdress;
 
+class user;
+
 class client : public QMainWindow
 {
     Q_OBJECT
@@ -24,6 +26,7 @@ public:
     client(QWidget *parent = nullptr);
     ~client();
     void addMessage(Message* message);
+    void addUser(user* user);
 public slots:
     void onGetMessage();
     void onRegistered();
@@ -32,6 +35,7 @@ private:
     Ui::client *ui;
     QTcpSocket socket;
     QString name;
+    QVector<QString> users;
 private:
     QString toJsonMsg() const;
     QString toJsonName() const;

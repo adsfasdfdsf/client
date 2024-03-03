@@ -9,6 +9,7 @@
 #include <QJsonValue>
 #include <QJsonParseError>
 #include "ipaddress.h"
+#include "user.h"
 
 client::client(QWidget *parent)
     : QMainWindow(parent)
@@ -39,7 +40,11 @@ void client::addMessage(Message *message)
     }else{
         ui->chat->layout()->addWidget(message);
     }
+}
 
+void client::addUser(user* user)
+{
+    ui->users->layout()->addWidget(user);
 }
 
 void client::onGetMessage()
@@ -48,10 +53,19 @@ void client::onGetMessage()
         auto msg = socket.readAll();
         QJsonDocument doc = QJsonDocument::fromJson(msg);
         QJsonObject json = doc.object();
-        QJsonArray arr = json["messages"].toArray();
-        for(const auto& i: arr){
-            QJsonObject msg = i.toObject();
-            addMessage(new Message(msg["name"].toString(), msg["message"].toString()));
+        if (json["mode"].toString() == "message"){
+            QJsonArray arr = json["messages"].toArray();
+            for(const auto& i: arr){
+                QJsonObject msg = i.toObject();
+                addMessage(new Message(msg["name"].toString(), msg["message"].toString()));
+            }
+            return;
+        }
+        if (json["mode"].toString() == "add_user")
+        {
+            users.push_back(json["name"].toString());
+            ui->users->layout()->addWidget(new ipAdress);
+            return;
         }
     }
 }
