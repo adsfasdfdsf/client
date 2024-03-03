@@ -2,6 +2,7 @@
 #define USER_H
 
 #include <QWidget>
+#include <QContextMenuEvent>
 
 namespace Ui {
 class user;
@@ -14,7 +15,7 @@ class user : public QWidget
 public:
     explicit user(QString name, QWidget *parent = nullptr);
     ~user();
-
+    void contextMenuEvent(QContextMenuEvent* event) override;
 private:
     Ui::user *ui;
 };

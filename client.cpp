@@ -10,6 +10,7 @@
 #include <QJsonParseError>
 #include "ipaddress.h"
 #include "user.h"
+#include <QBoxLayout>
 
 client::client(QWidget *parent)
     : QMainWindow(parent)
@@ -44,7 +45,7 @@ void client::addMessage(Message *message)
 
 void client::addUser(user* user)
 {
-    ui->users->layout()->addWidget(user);
+    dynamic_cast<QBoxLayout*>(ui->users->layout())->insertWidget(0, user);
 }
 
 void client::onGetMessage()
@@ -74,7 +75,7 @@ void client::onGetMessage()
                 for(const auto& i: arr){
                     QString user_name = i.toString();
                     users.push_back(user_name);
-                    ui->users->layout()->addWidget(new user(user_name));
+                    addUser(new user(user_name));
                 }
             }
         }
