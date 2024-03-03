@@ -51,21 +51,32 @@ void client::onGetMessage()
 {
     while(socket.bytesAvailable() > 0){
         auto msg = socket.readAll();
+        qDebug() << "Got message";
         QJsonDocument doc = QJsonDocument::fromJson(msg);
-        QJsonObject json = doc.object();
-        if (json["mode"].toString() == "message"){
-            QJsonArray arr = json["messages"].toArray();
-            for(const auto& i: arr){
-                QJsonObject msg = i.toObject();
-                addMessage(new Message(msg["name"].toString(), msg["message"].toString()));
+        QJsonObject content = doc.object();
+        QJsonArray contents = content["contents"].toArray();
+        for(size_t i = 0; i < contents.size(); ++i){
+            qDebug() << "Try to define type";
+            QJsonObject json = contents[i].toObject();
+            if (json["mode"].toString() == "message"){
+                qDebug() << "Type defined";
+                QJsonArray arr = json["messages"].toArray();
+                for(const auto& i: arr){
+                    qDebug() << "try to print";
+                    QJsonObject msg = i.toObject();
+                    addMessage(new Message(msg["name"].toString(), msg["message"].toString()));
+                }
             }
-            return;
-        }
-        if (json["mode"].toString() == "add_user")
-        {
-            users.push_back(json["name"].toString());
-            ui->users->layout()->addWidget(new ipAdress);
-            return;
+            else if (json["mode"].toString() == "add_user")
+            {
+                qDebug() << "add user";
+                QJsonArray arr = json["names"].toArray();
+                for(const auto& i: arr){
+                    QString user_name = i.toString();
+                    users.push_back(user_name);
+                    ui->users->layout()->addWidget(new user(user_name));
+                }
+            }
         }
     }
 }
@@ -103,7 +114,11 @@ QString client::toJsonMsg() const
     QJsonObject message;
     message.insert("mode", "message");
     message.insert("messages", arr);
-    QJsonDocument doc(message);
+    QJsonObject obj;
+    QJsonArray arr2;
+    arr2.append(message);
+    obj.insert("contents", arr2);
+    QJsonDocument doc(obj);
     QString json = doc.toJson(QJsonDocument::Compact);
     return json;
 }
@@ -113,7 +128,11 @@ QString client::toJsonName() const{
     QJsonObject json;
     json.insert("mode", "setName");
     json.insert("name", name);
-    QJsonDocument doc(json);
+    QJsonObject obj;
+    QJsonArray arr2;
+    arr2.append(json);
+    obj.insert("contents", arr2);
+    QJsonDocument doc(obj);
     QString str = doc.toJson(QJsonDocument::Compact);
     return str;
 }

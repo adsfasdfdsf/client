@@ -12,7 +12,7 @@ class user : public QWidget
     Q_OBJECT
 
 public:
-    explicit user(QWidget *parent = nullptr);
+    explicit user(QString name, QWidget *parent = nullptr);
     ~user();
 
 private:
