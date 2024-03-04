@@ -1,9 +1,12 @@
 #include "user.h"
 #include "ui_user.h"
 #include <QMenu>
-user::user(QString name, QWidget *parent)
-    : QWidget(parent)
-    , ui(new Ui::user)
+#include "client.h"
+
+user::user(QString name, client* mainwin, QWidget *parent)
+    : QWidget(parent),
+    mainwin(mainwin),
+    ui(new Ui::user)
 {
     ui->setupUi(this);
     ui->label->setText(name);
@@ -15,9 +18,10 @@ user::~user()
     delete ui;
 }
 
-void user::contextMenuEvent(QContextMenuEvent *event)
-{
+ void user::contextMenuEvent(QContextMenuEvent *event)
+ {
     QMenu menu(this);
 
-    menu.addAction("Написать лично");
-}
+    menu.QWidget::addAction("Написать лично2", [this](){qDebug() << mainwin->metaObject()->className();});
+    menu.exec(event->globalPos());
+ }

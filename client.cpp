@@ -75,7 +75,7 @@ void client::onGetMessage()
                 for(const auto& i: arr){
                     QString user_name = i.toString();
                     users.push_back(user_name);
-                    addUser(new user(user_name));
+                    addUser(new user(user_name, this));
                 }
             }
         }
