@@ -69,7 +69,7 @@ QWidget{
            <x>0</x>
            <y>0</y>
            <width>972</width>
-           <height>598</height>
+           <height>570</height>
           </rect>
          </property>
          <property name="sizePolicy">
@@ -137,7 +137,7 @@ QWidget{
            <x>0</x>
            <y>0</y>
            <width>69</width>
-           <height>598</height>
+           <height>570</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -181,7 +181,7 @@ QWidget{
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <layout class="QVBoxLayout" name="verticalLayout_6">
         <item>
          <widget class="QCheckBox" name="anonymus">
           <property name="text">
@@ -229,6 +229,13 @@ QWidget{
        </widget>
       </item>
      </layout>
+    </item>
+    <item>
+     <widget class="QToolButton" name="Settings">
+      <property name="text">
+       <string>...</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>

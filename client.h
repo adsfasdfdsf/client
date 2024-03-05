@@ -27,15 +27,17 @@ public:
     ~client();
     void addMessage(Message* message);
     void addUser(user* user);
+    void message_to(QString name);
 public slots:
     void onGetMessage();
     void onRegistered();
     void onSendMessage();
 private:
+    QString companion;
     Ui::client *ui;
     QTcpSocket socket;
     QString name;
-    QVector<QString> users;
+    QMap<QString, user*> users;
 private:
     QString toJsonMsg() const;
     QString toJsonName() const;

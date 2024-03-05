@@ -22,6 +22,8 @@ user::~user()
  {
     QMenu menu(this);
 
-    menu.QWidget::addAction("Написать лично2", [this](){qDebug() << mainwin->metaObject()->className();});
+    menu.QWidget::addAction("Написать лично", [this](){
+        mainwin->message_to(ui->label->text());
+    });
     menu.exec(event->globalPos());
  }

@@ -60,7 +60,7 @@ void client::onGetMessage()
             qDebug() << "Try to define type";
             QJsonObject json = contents[i].toObject();
             if (json["mode"].toString() == "message"){
-                qDebug() << "Type defined";
+                qDebug() << "type message";
                 QJsonArray arr = json["messages"].toArray();
                 for(const auto& i: arr){
                     qDebug() << "try to print";
@@ -74,9 +74,15 @@ void client::onGetMessage()
                 QJsonArray arr = json["names"].toArray();
                 for(const auto& i: arr){
                     QString user_name = i.toString();
-                    users.push_back(user_name);
-                    addUser(new user(user_name, this));
+                    users[user_name] = new user(user_name, this);
+                    addUser(users[user_name]);
                 }
+            }
+            else if (json["mode"].toString() == "remove_user"){
+                qDebug() << "Type remove_user";
+                QString username_to_remove = json["name"].toString();
+                delete users[username_to_remove];
+                users.remove(username_to_remove);
             }
         }
     }
@@ -122,6 +128,7 @@ QString client::toJsonMsg() const
     QJsonDocument doc(obj);
     QString json = doc.toJson(QJsonDocument::Compact);
     return json;
+
 }
 
 

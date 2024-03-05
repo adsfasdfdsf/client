@@ -9,7 +9,6 @@ ipAdress::ipAdress(QWidget *parent)
     ui->setupUi(this);
     connect(ui->accept, &QPushButton::clicked, this, &QDialog::accept);
     connect(ui->lastConnection, &QPushButton::clicked, this, &ipAdress::lastIp);
-    connect(ui->lastConnection, &QPushButton::clicked, this, &QDialog::accept);
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("ipAddresses.db");
     db.open();
@@ -28,6 +27,7 @@ void ipAdress::lastIp()
     query.exec("SELECT * FROM addresses ORDER BY id DESC LIMIT 1");
     query.next();
     ui->ipInput->setText(query.value(1).toString());
+    ui->accept->click();
 }
 
 QString ipAdress::getIp() const
